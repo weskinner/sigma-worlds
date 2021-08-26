@@ -1,14 +1,13 @@
-import demo1 from "./images/demo/demo-1.png"
-import demo2 from "./images/demo/demo-2.png"
-import demo3 from "./images/demo/demo-3.png"
-import demo4 from "./images/demo/demo-4.png"
-import demo5 from "./images/demo/demo-5.png"
-import demo6 from "./images/demo/demo-6.png"
-import demo7 from "./images/demo/demo-7.png"
-import "bootstrap/dist/css/bootstrap.css";
+import demo1 from "./images/demo/demo1.png"
+import demo2 from "./images/demo/demo2.png"
+import demo3 from "./images/demo/demo3.png"
+import demo4 from "./images/demo/demo4.png"
+import demo5 from "./images/demo/demo5.png"
+import demo6 from "./images/demo/demo6.png"
+import Page from "./Page"
 
 
-const demoImages = [demo1,demo2,demo3,demo5,demo6,demo7]
+const demoImages = [demo1,demo2,demo3,demo4,demo5,demo6]
 
 function Planet(image) {
   return (
@@ -20,22 +19,16 @@ function Planet(image) {
 
 function Landing() {
   return (
-    <div style={{ backgroundColor: "#ff0099", height: "100%", color: "yellow" }}>
-      <div className="container" style={{ paddingTop: "170px" }}>
-        <div>
-          <h1 style={{ fontSize: "90px" }} className="text-center">
-            Sigma Worlds
-          </h1>
-        </div>
-        <div className="row">
-          <p style={{ fontSize: "30px" }} className="text-center">
-            Choose your own proceduraly generated NFT world!<br></br>Rarity
-            assigned randomly during sale event.
-          </p>
-        </div>
-        <div className="row">{demoImages.map((i) => Planet(i))}</div>
+    <Page>
+      <div className="row">
+        <p style={{ fontSize: "20px" }} className="text-center">
+          Create your own procedurally generated NFT world!<br></br>
+          First sale will be announced during Cardano 360 on 8/26<br></br>
+          <a href="https://twitter.com/SigmaWorlds">Follow us on Twitter</a>
+        </p>
       </div>
-    </div>
+      <div className="row">{demoImages.map((i) => Planet(i))}</div>
+    </Page>
   );
 }
 

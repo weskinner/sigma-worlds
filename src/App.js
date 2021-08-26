@@ -1,10 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
 import Landing from "./Landing"
+import Demo from "./Demo"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
-    <Landing></Landing>
+    <Router>
+      <Switch>
+        <Route path="/demo">
+          <Demo></Demo>
+        </Route>
+        <Route path="/">
+          <Landing></Landing>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
