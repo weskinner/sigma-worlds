@@ -11,6 +11,7 @@ function Page(props) {
           <p className="text-center">
             <Link to="/" className="p-2">Home</Link>
             <Link to="/demo" className="p-2">Demo</Link>
+            <Link to="/earth-worlds" className="p-2" style={{color:"#f3d9d9"}}>Earth Worlds!</Link>
           </p>
         </div>
         {props.children}

@@ -7,6 +7,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import EarthWorlds from './EarthWorld';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Switch>
         <Route path="/demo">
           <Demo></Demo>
+        </Route>
+        <Route path="/earth-worlds">
+          <EarthWorlds></EarthWorlds>
         </Route>
         <Route path="/">
           <Landing></Landing>

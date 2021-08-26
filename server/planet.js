@@ -15,12 +15,13 @@ module.exports.run = async function(seed, outdir) {
   const randomPercentage = () => Math.floor(rng() * 100)
 
   let colors = {
-    land_color: randomColor(),              //Color of the Main Land
-    beach_color: randomColor(),             //Color of the Beaches
-    shore_color: randomColor(),             //Color of the Shores
-    ocean_color: randomColor(),             //Color of the Deep Ocean
-    mountain_color: randomColor(),          //Color of the Mountains
-    mountain_top_color: randomColor(),      //Color of the Mountain Top (e.g. Snow)
+    land_color: "#4cfa69",              //Color of the Main Land
+    beach_color: "#e9fe6d",             //Color of the Beaches
+    shore_color: "#78dffb",             //Color of the Shores
+    ocean_color: "#0744a6",             //Color of the Deep Ocean
+    mountain_color: "#854d1d",          //Color of the Mountains
+    mountain_top_color: "#ffffff",      //Color of the Mountain Top (e.g. Snow)
+
     crater_color: "#8b9e90",            //Main Color of Craters
     pole_color: "#BDDEEC",              //Color of Poles (Ice)
     cloud_color: "#ffffff",             //Cloud Color
@@ -30,6 +31,7 @@ module.exports.run = async function(seed, outdir) {
     shading_level: 2,                   //Shading Level (Float 0-2, 2 = Maximum)
     add_detail: true,                   //Plain Map or a bit more detailed?
   }
+
   let planet_options = {
     planet_radius: 350 + (rng() * 100),                 //Planet Radius
     atmosphere_radius: 600,             //Atmosphere Radius
@@ -47,40 +49,6 @@ module.exports.run = async function(seed, outdir) {
     poles: false,                        //Should the Planet have icy poles?
     hard_pole_lines: false              //Should the pole line be a hard or a soft cut?
   }
-
-  // let colors = {
-  //   land_color: "#" + randomColor(), //Color of the Main Land
-  //   beach_color: "#" + randomColor(), //Color of the Beaches
-  //   shore_color: "#" + randomColor(), //Color of the Shores
-  //   ocean_color: "#" + randomColor(), //Color of the Deep Ocean
-  //   mountain_color: "#" + randomColor(), //Color of the Mountains
-  //   mountain_top_color: "#" + randomColor(), //Color of the Mountain Top (e.g. Snow)
-  //   crater_color: "#" + randomColor(), //Main Color of Craters
-  //   pole_color: "#" + randomColor(), //Color of Poles (Ice)
-  //   cloud_color: "#" + randomColor(), //Cloud Color
-  //   cloud_opacity: randomPercentage(), //Cloud Base Opacity
-  //   atmosphere_color: "#" + randomColor(), //Atmosphere Color
-  //   atmosphere_opacity: randomPercentage(), //Atmosphere Opacity/Density
-  //   shading_level: 2, //Shading Level (Float 0-2, 2 = Maximum)
-  //   add_detail: false, //Plain Map or a bit more detailed?
-  // };
-  // let planet_options = {
-  //   planet_radius: 400, //Planet Radius
-  //   atmosphere_radius: 600, //Atmosphere Radius
-  //   sea_level: rng(), // ALL LEVELS ARE VALUES BETWEEN 0 AND 1
-  //   shore_level: rng(),
-  //   beach_level: rng(),
-  //   mountain_level: rng(),
-  //   mountain_top_level: rng(),
-  //   cloud_level: rng(), // CLOUD LEVEL IS CUSTOM GENERATED AND NOT AFFECTED BY THE OTHER LEVELS
-  //   cloud_radius: 420, //Cloud Radius
-  //   pole_level: 0.5, //How big the Poles should be (Float 0-2, 2 = Full Coverage)
-  //   craters: false, //Should Craters Spawn?
-  //   clouds: true, //Should Clouds Spawn?
-  //   atmosphere: true, //Should the Planet have an atmosphere
-  //   poles: true, //Should the Planet have icy poles?
-  //   hard_pole_lines: false, //Should the pole line be a hard or a soft cut?
-  // };
 
   let generator_options = {
       octaveCount: 9,                     //Perlin Noise Octave (How Often)

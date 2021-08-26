@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import demo1 from "./images/demo/demo1.png"
 import demo2 from "./images/demo/demo2.png"
 import demo3 from "./images/demo/demo3.png"
@@ -23,9 +24,9 @@ function Landing() {
       <div className="row">
         <p style={{ fontSize: "20px" }} className="text-center">
           Create your own procedurally generated NFT world!<br></br>
-          First sale will be announced during Cardano 360 on 8/26<br></br>
-          <a href="https://twitter.com/SigmaWorlds">Follow us on Twitter</a>
+          <span style={{color: "#6eff00"}}>ANNOUNCING:</span> <Link to="/earth-worlds" style={{color:"#f3d9d9"}}>The Earth Worlds</Link> sale on September 12th! Check out our <Link to="/demo">demo!</Link><br></br>
         </p>
+        <p className="text-center"><a href="https://twitter.com/SigmaWorlds">Follow us on Twitter</a></p>
       </div>
       <div className="row">{demoImages.map((i) => Planet(i))}</div>
     </Page>
