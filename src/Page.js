@@ -2,7 +2,7 @@ const { Link } = require("react-router-dom");
 
 function Page(props) {
   return (
-    <div style={{ backgroundColor: "#ff0099", height: "100%", color: "yellow", fontFamily: "'Press Start 2P'", }}>
+    <div style={{ color: "yellow", fontFamily: "'Press Start 2P'", }}>
       <div className="container" style={{ paddingTop: "2rem" }}>
         <div>
           <h1 style={{ fontSize: "90px" }} className="text-center">

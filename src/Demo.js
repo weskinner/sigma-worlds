@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Page from "./Page"
 
+const host = process.env.NODE_ENV === "production" ? "http://35.169.6.44:5000" : "http://localhost:5000"
 
 function Demo() {
   const imageRef = React.useRef();
@@ -12,7 +13,7 @@ function Demo() {
     setSubmitText("...Terraforming...")
     setWorking(true)
 
-    const response = await fetch("http://localhost:5000/world?seed="+encodeURIComponent(seed))
+    const response = await fetch(`${host}/world?seed=`+encodeURIComponent(seed))
     if(response.headers.get("content-type") == "image/png") {
       const blob = await response.blob()
       const objectUrl = URL.createObjectURL(blob) // https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications#example_using_object_urls_to_display_images

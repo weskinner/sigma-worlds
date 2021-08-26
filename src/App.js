@@ -2,7 +2,7 @@ import './App.css';
 import Landing from "./Landing"
 import Demo from "./Demo"
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
