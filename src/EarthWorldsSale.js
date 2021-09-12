@@ -43,6 +43,7 @@ function Demo() {
   const [error,setError] = useState(null)
   const [reserved, setReserved] = useState(false);
   const reserve = async () => {
+    setSeed(seed.trim())
     const response = await fetch(`${host}/reserve`, {
       method: "POST",
       headers: {
@@ -94,13 +95,13 @@ function Demo() {
       <div className="row">
         <div>
           <h4>
-            Enter Generation Phrase{" "}
+            Enter Generation Phrase
             {/* <button className="btn btn-secondary">Random</button> */}
           </h4>
           <p>For example: Earth.  Try to stick to a single word.  After that click generate and wait for your NFT image to appear.  If you are happy you will be able to reserve the seed phrase to your address and send payment.</p>
         </div>
         <div className="row">
-          <textarea
+          <input
             value={seed}
             onChange={(e) => {
               setSeed(e.target.value);
