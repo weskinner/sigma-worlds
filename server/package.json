@@ -11,11 +11,14 @@
   "dependencies": {
     "@stefftek/planet.js": "^1.0.5",
     "cors": "^2.8.5",
+    "ergo-lib-wasm-nodejs": "^0.13.3",
     "express": "^4.17.1",
     "pg": "^8.7.1",
     "pureimage": "^0.3.5",
     "rate-limiter-flexible": "^2.2.4",
-    "seedrandom": "^2.4.4"
+    "seedrandom": "^2.4.4",
+    "sha256-file": "^1.0.0",
+    "superagent": "^6.1.0"
   },
   "devDependencies": {
     "jest": "^27.0.6"

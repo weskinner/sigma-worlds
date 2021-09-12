@@ -2,7 +2,7 @@ const Planet = require("@stefftek/planet.js");
 const seedrandom = require("seedrandom")
 var PImage = require("pureimage");
 
-module.exports.run = async function(seed, outdir) {
+module.exports.run = async function(seed, outdir, filename, background) {
   var fnt = PImage.registerFont("fonts/OpenSans-Bold.ttf", "Open Sans");
 
 
@@ -18,7 +18,7 @@ module.exports.run = async function(seed, outdir) {
     land_color: "#4cfa69",              //Color of the Main Land
     beach_color: "#e9fe6d",             //Color of the Beaches
     shore_color: "#78dffb",             //Color of the Shores
-    ocean_color: "#0744a6",             //Color of the Deep Ocean
+    ocean_color: background || "#0744a6",             //Color of the Deep Ocean
     mountain_color: "#854d1d",          //Color of the Mountains
     mountain_top_color: "#ffffff",      //Color of the Mountain Top (e.g. Snow)
 
@@ -84,7 +84,7 @@ module.exports.run = async function(seed, outdir) {
     cloud_generator
   );
 
-  const path = `${outdir}/${seed}.png`
+  const path = `${outdir}/${filename || seed}.png`
   return new Promise(async (resolve, reject) => {
     fnt.load(async () => {
   

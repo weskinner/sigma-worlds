@@ -5,7 +5,11 @@ CREATE TABLE reservations (
   addr text,
   tag text,
   seed text UNIQUE,
-  created_on timestamp without time zone DEFAULT current_timestamp
+  input_box text UNIQUE,
+  processed_txn text UNIQUE,
+  unspent_box text UNIQUE,
+  created_on timestamp without time zone DEFAULT current_timestamp,
+  processed_on timestamp without time zone
 );
 
 CREATE INDEX idx_reservations_addr ON reservations(addr);
