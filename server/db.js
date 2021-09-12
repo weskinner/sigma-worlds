@@ -61,13 +61,25 @@ module.exports = {
   },
   async oldestReservation(address) {
     return withClient(async client => {
-      const results = await client.query("select * from reservations where addr = $1 and processed_txn is null order by created_on desc limit 1", [address])
+      const results = await client.query("select * from reservations where addr = $1 and processed_txn is null order by created_on limit 1", [address])
       return results.rows.length > 0 ? results.rows[0] : undefined
     })
   },
-  async setProcessed(address,seed,txnId,inputBox,unspentBox) {
+  async setProcessed(address,seed,txnId,inputBox) {
     return withClient(async client => {
-      return await client.query("update reservations set processed_on = current_timestamp,processed_txn=$3,input_box=$4,unspent_box=$5 where seed = $1 and addr = $2 ", [seed, address, txnId, inputBox, unspentBox])
+      return await client.query("update reservations set processed_on = current_timestamp,processed_txn=$3,input_box=$4 where seed = $1 and addr = $2 ", [seed, address, txnId, inputBox])
+    })
+  },
+  async alreadyProcessed(boxId) {
+    return withClient(async client => {
+      const results = await client.query("select * from reservations where input_box = $1 limit 1", [boxId])
+      return results.rows.length > 0
+    })
+  },
+  async allProcessed() {
+    return withClient(async client => {
+      const results = await client.query("select * from reservations where processed_on is not null", [])
+      return results.rows
     })
   },
 }

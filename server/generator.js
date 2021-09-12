@@ -61,7 +61,7 @@ module.exports = {
       if (reservation.length > 1) {
         throw Error("SHould not be more than one reservation per seed!");
       } else {
-        const result = await this.generatePlanet(1, "/tmp", `${reservation[0].id}`, getBackgroundRarity());
+        const result = await this.generatePlanet(1, seed, `${reservation[0].id}`, getBackgroundRarity());
         let pinataReslut = await pinata.pinFromFS(result.path, {
           pinataOptions: { wrapWithDirectory: true },
         });
@@ -98,7 +98,7 @@ module.exports = {
               }
             }
           ],
-          "fee": 1000000
+          "fee": 2000000
         }
 
         console.dir(nodeRequests, {depth: 10})
@@ -137,20 +137,27 @@ module.exports = {
     
   },
   async processPayments() {
-    let payments = (await superagent.get('http://localhost:9052/wallet/boxes/unspent?minConfirmations=0&minInclusionHeight=0').set('api_key','75Y1fULtMlvCO3pY')).body.filter(u => u.box.value === 990000000)
-    for(const payment of payments) {
-      console.log("payment",payment)
-      let paymentTransaction = (await superagent.get(`https://api.ergoplatform.com/api/v1/transactions/${payment.creationTransaction}`)).body
-      let inputBox = paymentTransaction.inputs[0]
-      let sendToAddress = inputBox.address
-      console.log("sending to",sendToAddress)
-      let oldestReservation = await db.oldestReservation(sendToAddress)
-      if(oldestReservation) {
-        console.log("oldest reservation",oldestReservation)
-        let txnId = await this.processInner(oldestReservation.addr, oldestReservation.seed, inputBox.boxId)
-        db.setProcessed(sendToAddress, oldestReservation.seed, txnId, inputBox.boxId, payment.box.boxId)
+    let payments = (await superagent.get('http://localhost:9052/wallet/transactions').set('api_key','75Y1fULtMlvCO3pY')).body.filter(t => t.outputs.find(o => o.value === 990000000))
+    let processed = await db.allProcessed()
+    let unprocessed = payments.filter(p => !processed.find(pr => pr.input_box === p.inputs[0].boxId))
+    for(const payment of unprocessed) {
+      if(!(await db.alreadyProcessed(payment.inputs[0].boxId))) {
+        console.log("payment",payment)
+        let paymentTransaction = (await superagent.get(`https://api.ergoplatform.com/api/v1/transactions/${payment.id}`)).body
+        let inputBox = paymentTransaction.inputs[0]
+        let sendToAddress = inputBox.address
+        console.log("sending to",sendToAddress)
+        let oldestReservation = await db.oldestReservation(sendToAddress)
+        if(oldestReservation) {
+          console.log("oldest reservation",oldestReservation)
+          let txnId = await this.processInner(oldestReservation.addr, oldestReservation.seed, inputBox.boxId)
+          db.setProcessed(sendToAddress, oldestReservation.seed, txnId, inputBox.boxId)
+          return;
+        } else {
+          console.log("No reservation found for ", sendToAddress)
+        }
       } else {
-        console.log("No reservation found")
+        // console.log("already processed", payment.inputs[0].boxId)
       }
     }
   }
