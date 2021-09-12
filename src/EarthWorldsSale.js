@@ -8,7 +8,7 @@ const host =
 
 function Demo() {
   const imageRef = React.useRef();
-  const [seed, setSeed] = useState("Orbital!");
+  const [seed, setSeed] = useState("");
   const [address, setAddress] = useState("");
   const [submitText, setSubmitText] = useState("Generate!");
   const [working, setWorking] = useState(false);
@@ -94,9 +94,10 @@ function Demo() {
       <div className="row">
         <div>
           <h4>
-            Enter Seed Phrase{" "}
+            Enter Generation Phrase{" "}
             {/* <button className="btn btn-secondary">Random</button> */}
           </h4>
+          <p>For example: Earth.  Try to stick to a single word.</p>
         </div>
         <div className="row">
           <textarea
@@ -119,6 +120,7 @@ function Demo() {
         {seed && generated && (
           <>
             <div className="mt-3">
+              <p>Enter the address you will be paying from and hit Reserve. The NFT will be sent back to this address after payment is received.</p>
               <h4>Enter Address</h4>
             </div>
             <div className="row">
@@ -146,6 +148,7 @@ function Demo() {
             <div className="mt-3">
               <h1>RESERVED!</h1>
               <p>Send 0.99 ERG to <span>9hCqMZy97mi5qooyKzEWSJB4dcdCBoY4FRykNrcNy3wqcgZ4ayH</span> and you will receive your seed generated SigmaWorld!</p>
+              <p>You can check the status of your order here <a href="https://explorer.ergoplatform.com/en/addresses/9hCqMZy97mi5qooyKzEWSJB4dcdCBoY4FRykNrcNy3wqcgZ4ayH">https://explorer.ergoplatform.com/en/addresses/9hCqMZy97mi5qooyKzEWSJB4dcdCBoY4FRykNrcNy3wqcgZ4ayH</a> .  Please allow up to an hour for processing.</p>
             </div>
           </>
         )}
