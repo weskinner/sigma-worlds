@@ -97,7 +97,7 @@ function Demo() {
             Enter Generation Phrase{" "}
             {/* <button className="btn btn-secondary">Random</button> */}
           </h4>
-          <p>For example: Earth.  Try to stick to a single word.</p>
+          <p>For example: Earth.  Try to stick to a single word.  After that click generate and wait for your NFT image to appear.  If you are happy you will be able to reserve the seed phrase to your address and send payment.</p>
         </div>
         <div className="row">
           <textarea
