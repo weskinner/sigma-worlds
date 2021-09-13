@@ -2,10 +2,10 @@ const Planet = require("@stefftek/planet.js");
 const seedrandom = require("seedrandom")
 var PImage = require("pureimage");
 
-var fnt = PImage.registerFont("fonts/OpenSans-Bold.ttf", "Open Sans");
-
 module.exports.run = async function(seed, outdir, filename, background) {
-  
+  var fnt = PImage.registerFont("fonts/OpenSans-Bold.ttf", "Open Sans");
+
+
   // const seed = process.argv[2];
   const rng = seedrandom(seed)
 
