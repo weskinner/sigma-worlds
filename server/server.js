@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/world", async (req, res) => {
-  console.log(req.query);
   const result = await generator.generatePlanet(
     1,
     req.query.seed || "noseed",

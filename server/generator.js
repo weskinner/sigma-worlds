@@ -47,8 +47,16 @@ module.exports = {
   async generatePlanet(id, seed, filename, background) {
     return rateLimiter.consume(id, 1) //points
       .then(async (rateLimiterRes) => {
-        return planet.run(seed, "/tmp", filename, background)
-        
+        let attemps = 1
+        do {
+          try {
+            let path = await planet.run(seed, "/tmp", filename, background)
+            return {path}
+          } catch (err) {
+            console.log("Error generating", err)
+            attemps++
+          }
+        } while (attemps < 5)
       })
       .catch(async (rateLimiterRes) => {
         return { busy: true }

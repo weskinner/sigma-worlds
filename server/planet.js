@@ -85,34 +85,11 @@ module.exports.run = async function(seed, outdir, filename, background) {
   );
 
   const path = `${outdir}/${filename || seed}.png`
-  return new Promise(async (resolve, reject) => {
-    fnt.load(async () => {
-  
-      let ctx = image.getContext("2d");
-      ctx.font = "200px Open Sans";
-      ctx.fillStyle = "white";
-// WARNING. Can't find font family  { family: 'Open Sans', size: 200 }
-// /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6389
-//         const glyphs = font.font.stringToGlyphs(text);
-//                                  ^
-
-// TypeError: Cannot read property 'stringToGlyphs' of null
-//     at measureText (/home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6389:34)
-//     at processTextPath (/home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6349:25)
-//     at Context.fillText (/home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:7955:32)
-//     at /home/ubuntu/sigma-worlds/server/planet.js:94:11
-//     at /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6299:27
-//     at /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6250:20
-//     at /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6082:13
-//     at FSReqCallback.readFileAfterClose [as oncomplete] (node:internal/fs/read_file_context:68:3)
-      ctx.fillText("Σ", 450, 600);
-      
-      /*
-      Export with PureImage
-      */
-      await Planet.save(image, path); //Image Object and Path
-      resolve({path})
-    })
-  })
-
+  fnt.loadSync()
+  let ctx = image.getContext("2d");
+  ctx.font = "200px Open Sans";
+  ctx.fillStyle = "white";
+  ctx.fillText("Σ", 450, 600);
+  await Planet.save(image, path); //Image Object and Path
+  return path
 }
