@@ -43,6 +43,10 @@ app.post("/process", async (req, res) => {
   const result = await process(address, seed);
 });
 
+app.get("/allProcessed", async(req,res) => {
+  res.json(await db.allProcessed())
+})
+
 app.listen(port, '0.0.0.0', () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

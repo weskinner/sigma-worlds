@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import EarthWorlds from './EarthWorld';
 import EarthWorldsSale from './EarthWorldsSale';
+import Sales from './Sales';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/earth-worlds-sale">
           <EarthWorldsSale></EarthWorldsSale>
+        </Route>
+        <Route path="/sales">
+          <Sales></Sales>
         </Route>
         <Route path="/">
           <Landing></Landing>

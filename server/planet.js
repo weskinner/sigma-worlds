@@ -2,10 +2,10 @@ const Planet = require("@stefftek/planet.js");
 const seedrandom = require("seedrandom")
 var PImage = require("pureimage");
 
+var fnt = PImage.registerFont("fonts/OpenSans-Bold.ttf", "Open Sans");
+
 module.exports.run = async function(seed, outdir, filename, background) {
-  var fnt = PImage.registerFont("fonts/OpenSans-Bold.ttf", "Open Sans");
-
-
+  
   // const seed = process.argv[2];
   const rng = seedrandom(seed)
 
@@ -91,6 +91,20 @@ module.exports.run = async function(seed, outdir, filename, background) {
       let ctx = image.getContext("2d");
       ctx.font = "200px Open Sans";
       ctx.fillStyle = "white";
+// WARNING. Can't find font family  { family: 'Open Sans', size: 200 }
+// /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6389
+//         const glyphs = font.font.stringToGlyphs(text);
+//                                  ^
+
+// TypeError: Cannot read property 'stringToGlyphs' of null
+//     at measureText (/home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6389:34)
+//     at processTextPath (/home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6349:25)
+//     at Context.fillText (/home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:7955:32)
+//     at /home/ubuntu/sigma-worlds/server/planet.js:94:11
+//     at /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6299:27
+//     at /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6250:20
+//     at /home/ubuntu/sigma-worlds/server/node_modules/pureimage/dist/pureimage-umd.cjs:6082:13
+//     at FSReqCallback.readFileAfterClose [as oncomplete] (node:internal/fs/read_file_context:68:3)
       ctx.fillText("Σ", 450, 600);
       
       /*
